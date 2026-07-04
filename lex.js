@@ -64,6 +64,9 @@ function tryLex(text, syntax, state = { index: 0, names: [] }) {
 	);
 
 	state.index = nextIndex;
+	if (match.pattern.type === "end")
+		return result;
+
 	if (match.pattern.type === "begin") {
 		const oldLength = state.names.length;
 		state.names.push(...match.pattern.names);
@@ -71,8 +74,6 @@ function tryLex(text, syntax, state = { index: 0, names: [] }) {
 			...tryLex(text, match.pattern.syntax, state)
 		);
 		state.names.length = oldLength;
-	} else if (match.pattern.type === "end") {
-		return result;
 	}
 
 	result.push(
