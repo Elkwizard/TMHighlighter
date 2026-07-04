@@ -7,7 +7,8 @@ function escapeHTML(content) {
 		.replace(/"/g, "&quot;")
 		.replace(/'/g, "&#39;")
 		.replace(/</g, "&lt;")
-		.replace(/>/g, "&gt;");
+		.replace(/>/g, "&gt;")
+		.replace(/\r?\n/g, "<br>");
 }
 
 export function highlight(text, syntax, theme = "DEFAULT") {
