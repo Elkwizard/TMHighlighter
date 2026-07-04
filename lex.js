@@ -83,8 +83,6 @@ function tryLex(text, syntax, state = { index: 0, names: [] }) {
 }
 
 export function lex(text, syntax) {
-	syntax = JSON.parse(syntax);
-
 	const { repository } = syntax;
 	const root = resolveIncludes(
 		{ patterns: syntax.patterns },
