@@ -19,7 +19,8 @@ export function highlight(text, syntax, theme = "DEFAULT") {
 		.map(token => {
 			const content = escapeHTML(token.content);
 			const color = theme.getColor(token.names);
-			return `<span style="color: ${color};">${content}</span>`;
+			const classes = token.names.map(name => `tm-${name.replaceAll(".", "-")}`);
+			return `<span style="color: ${color};" class="${classes.join(" ")}">${content}</span>`;
 		})
 		.join("");
 }
