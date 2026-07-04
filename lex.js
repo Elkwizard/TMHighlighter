@@ -48,8 +48,11 @@ function tryLex(text, syntax, state = { index: 0, names: [] }) {
 
 	const nearest = Math.min(...matches.map(match => match.index));
 
-	if (nearest === Infinity)
-		return [createToken(text.slice(state.index), [])];
+	if (nearest === Infinity) {
+		const token = createToken(text.slice(state.index), []);
+		state.index = text.length;
+		return [token];
+	}
 
 	const match = matches.find(match => match.index === nearest);
 
